@@ -1,0 +1,26 @@
+.container {
+  margin: 30px auto;
+  padding: 10px;
+  background-color: azure;
+}
+.card-title {
+  min-height: 50px;
+  line-height: 50px;
+}
+
+h5 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar-brand img {
+  width: 40px;
+}
+
+.darkMode {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.darkContainer {
+  background-color: whitesmoke;
+}

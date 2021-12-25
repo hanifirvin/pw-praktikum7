@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Praktikum 7</title>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <nav class="navbar navbar-light bg-light" id="nav">
+        <div class="container-fluid">
+          <a class="navbar-brand"> <img src="img/icon.png" alt="lightBulbIcon" /> Find Your Map </a>
+          <button class="btn btn-outline-dark" type="button" id="button" onclick="darkMode()">Dark Mode</button>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container" id="container">
+      <div class="row justify-content-md-center">
+        <div class="col-sm-10 text-center">
+          <img src="img/java.gif" class="img-thumbnail" alt="Pulau Jawa" />
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-sm-5">
+          <select class="form-select form-select-lg mb-3 col-sm-4" id="prov" onchange="tampilkanKota()">
+            <option selected disabled>Pilih Provinsi</option>
+            <option value="Banten">Banten</option>
+            <option value="Jakarta">DKI Jakarta</option>
+            <option value="Barat">Jawa Barat</option>
+            <option value="Tengah">Jawa Tengah</option>
+            <option value="Timur">Jawa Timur</option>
+            <option value="Yogyakarta">Yogyakarta</option>
+          </select>
+        </div>
+        <div class="col-sm-5">
+          <select class="form-select form-select-lg mb-3 col-sm-4" id="kota" onchange="tampilkanHasil()">
+            <option selected disabled>Pilih Kota</option>
+            <option value="" disabled>-</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-sm-10 card text-center text-dark">
+          <h5 class="card-title" id="hasil"></h5>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const prov = document.getElementById("prov");
+      const kota = document.getElementById("kota");
+      const arrKota = {
+        Banten: ["Cilegon", "Serang", "Tangerang", "Tangerang Selatan"],
+        Jakarta: ["Jakarta Barat", "Jakarta Pusat", "Jakarta Selatan", "Jakarta Timur", "Jakarta Utara"],
+        Barat: ["Bandung", "Banjar", "Bekasi", "Bogor", "Cimahi", "Cirebon", "Depok", "Sukabumi", "Tasikmalaya"],
+        Tengah: ["Magelang", "Pekalongan", "Salatiga", "Semarang", "Surakarta", "Tegal"],
+        Timur: ["Batu", "Blitar", "Kediri", "Madiun", "Malang", "Mojokerto", "Pasuruan", "Probolinggo", "Surabaya"],
+        Yogyakarta: ["Yogyakarta"],
+      };
+
+      function tampilkanKota() {
+        const provVal = prov.value;
+        if (provVal === "Banten") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Banten"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Banten"][i]}">${arrKota["Banten"][i]}</option>`;
+          }
+        } else if (provVal === "Jakarta") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Jakarta"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Jakarta"][i]}">${arrKota["Jakarta"][i]}</option>`;
+          }
+        } else if (provVal === "Barat") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Barat"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Barat"][i]}">${arrKota["Barat"][i]}</option>`;
+          }
+        } else if (provVal === "Tengah") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Tengah"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Tengah"][i]}">${arrKota["Tengah"][i]}</option>`;
+          }
+        } else if (provVal === "Timur") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Timur"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Timur"][i]}">${arrKota["Timur"][i]}</option>`;
+          }
+        } else if (provVal === "Yogyakarta") {
+          kota.innerHTML = "<option selected disabled>Pilih Kota</option>";
+          for (let i = 0; i < arrKota["Yogyakarta"].length; i++) {
+            kota.innerHTML += `<option value="${arrKota["Yogyakarta"][i]}">${arrKota["Yogyakarta"][i]}</option>`;
+          }
+        }
+      }
+
+      function tampilkanHasil() {
+        const provVal = document.getElementById("prov").value;
+        const kotaVal = document.getElementById("kota").value;
+        const result = document.getElementById("hasil");
+
+        result.innerText = `Pada Provinsi ${provVal} ada Kota ${kotaVal}`;
+      }
+
+      function darkMode() {
+        const darkMode = document.body.classList.toggle("darkMode");
+        const container = document.getElementsByClassName("container");
+        container[0].classList.toggle("darkContainer");
+        container[1].classList.toggle("darkContainer");
+        const navBar = document.getElementById("nav");
+        const button = document.getElementById("button");
+
+        if (darkMode == true) {
+          button.innerHTML = "Light Mode";
+          button.classList.replace("btn-outline-dark", "btn-outline-light");
+          navBar.classList.replace("navbar-light", "navbar-dark");
+          navBar.classList.replace("bg-light", "bg-dark");
+        } else {
+          button.innerHTML = "Dark Mode";
+          button.classList.replace("btn-outline-light", "btn-outline-dark");
+          navBar.classList.replace("navbar-dark", "navbar-light");
+          navBar.classList.replace("bg-dark", "bg-light");
+        }
+      }
+    </script>
+  </body>
+</html>
